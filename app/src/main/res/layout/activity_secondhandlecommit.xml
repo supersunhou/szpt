@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:background="#ccecffff"
+android:scrollbars="vertical"
+android:fadingEdge="vertical"
+
+    >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ccecffff" >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="horizontal"
+        android:background="#ffffff"
+        android:gravity="center_vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:layout_marginBottom="10dp">
+        <!--  <ImageView
+             android:layout_width="80dp"
+             android:layout_height="80dp"
+             android:src="@drawable/aphoto1"
+             android:layout_marginLeft="5dp" />
+         <ImageView
+             android:layout_width="80dp"
+             android:layout_height="80dp"
+             android:src="@drawable/danche1"
+             android:layout_marginLeft="5dp" />
+         <ImageView
+             android:layout_width="80dp"
+             android:layout_height="80dp"
+             android:src="@drawable/danche2"
+             android:layout_marginLeft="5dp" />
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:hint="温示提醒：暂不提供提供图片上传功能！"
+             android:textSize="12sp"
+             />  -->
+        <GridView
+            android:id="@+id/gridView1"
+            android:layout_width="fill_parent"
+            android:layout_height="200dp"
+            android:layout_margin="10dp"
+            android:background="#ffffff"
+            android:horizontalSpacing="5dp"
+            android:verticalSpacing="5dp"
+            android:numColumns="4"
+            android:columnWidth="90dp"
+            android:stretchMode="columnWidth"
+            android:layout_marginTop="10dp"
+            android:gravity="center" >
+        </GridView>
+    </LinearLayout>
+    <EditText
+        android:id="@+id/et_describe"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="#ffffff"
+        android:padding="5dp"
+        android:inputType="textMultiLine"
+        android:gravity="left|top"
+        android:hint="100字之内商品描述，商品使用了多长时间，吸引更多浏览者留意..."
+        android:layout_marginBottom="10dp"
+        android:maxLength="100"
+        android:scrollbars="vertical"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:layout_marginBottom="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="售价："
+            android:textSize="20sp"
+            android:padding="10dp"
+            />"
+        <EditText
+            android:id="@+id/now_balance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="￥ 0.00"
+            android:padding="10dp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:layout_marginBottom="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="原价："
+            android:textSize="20sp"
+            android:padding="10dp"
+            />
+        <EditText
+            android:id="@+id/et_oldbalance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="￥ 0.00"
+            android:padding="10dp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:layout_marginBottom="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="来自："
+            android:textSize="20sp"
+            android:padding="10dp"
+            />
+        <EditText
+            android:id="@+id/et_xueyuan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="学院"
+            android:padding="10dp"
+            />
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="联系方式"
+        android:textSize="15sp"
+        android:textColor="#ccff0000"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+        >
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:padding="10dp"
+            android:entries="@array/spingarr"/>
+        <EditText
+            android:id="@+id/et_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="11"
+            android:hint="联系号码"
+            android:padding="10dp"
+            />
+    </LinearLayout>
+    <Button
+        android:id="@+id/btn_submit"
+        android:text="发布"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btn_query"
+        android:text="查询"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
+
+</ScrollView>

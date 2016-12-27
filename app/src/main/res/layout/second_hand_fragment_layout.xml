@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ff4fa5d5"
+     >
+        <Button
+            android:id="@+id/btn_send"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="onclick上传"
+            android:onClick="onclick"/>
+    "
+    <LinearLayout
+        android:id="@+id/head_ll"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:padding="2dp">
+    </LinearLayout>
+
+    <view.ReFlashListView
+        android:id="@+id/lv_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/addLL"
+        android:divider="#ff4fa5d5"
+        android:dividerHeight="4dp"
+        android:background="#ffffffff"></view.ReFlashListView>
+
+</LinearLayout>
+    <ImageView
+        android:id="@+id/img_submit"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/submit"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="5dp"
+        />
+</RelativeLayout>

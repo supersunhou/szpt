@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_dark"
+    android:orientation="vertical"
+  >
+
+    <Button
+        android:text="被捡到的东西"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_want_find"
+        android:textColor="@android:color/black"
+        android:textSize="20dp"
+        android:layout_weight="1"
+        android:gravity="center"/>
+    <Button
+        android:text="正在找东西的失主"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_want_give"
+        android:textColor="@android:color/black"
+        android:textSize="20dp"
+        android:layout_weight="1"
+        android:gravity="center"/>
+    <Button
+        android:text="我要发布"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_want_publish"
+        android:textColor="@android:color/black"
+        android:textSize="20dp"
+        android:layout_weight="1"
+        android:gravity="center"/>
+</LinearLayout>

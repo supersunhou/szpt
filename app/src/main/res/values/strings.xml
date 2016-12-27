@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">szpt</string>
+    <string-array name="infotype">
+        <item>捡到物品</item>
+        <item>丢了物品</item>
+    </string-array>
+    <string-array name="campus">
+        <item>全校区</item>
+        <item>东校区</item>
+        <item>西校区</item>
+        <item>北校区</item>
+    </string-array>
+    <string-array name="spingarr">
+        <item>手机</item>
+        <item>QQ</item>
+        <item>微信</item>
+    </string-array>
+</resources>

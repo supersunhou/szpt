@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:text="校园卡"
+        android:textSize="20dp"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+
+    </TextView>
+
+
+    <TextView
+        android:id="@+id/tv_localtion"
+        android:text="教工食堂一楼"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tv_time"
+        android:textSize="16sp"
+        android:layout_alignParentEnd="true">
+    </TextView>
+
+    <TextView
+        android:id="@+id/tv_describe"
+        android:text="校园卡卡号XXXXXXXXX"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minLines="1"
+        android:maxLines="2"
+        android:textSize="16sp"
+        android:layout_marginTop="13dp"
+        android:layout_below="@+id/tv_time"
+        android:layout_alignParentStart="true">
+    </TextView>
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:text="7月8日,周三上午"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minLines="1"
+        android:maxLines="2"
+        android:textSize="16sp"
+        android:layout_marginTop="21dp"
+        android:layout_below="@+id/tv_title"
+        android:layout_alignParentStart="true">
+    </TextView>
+
+    <RelativeLayout
+        android:id="@+id/rl2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/tv_describe"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/tv_puttime"
+            android:text="2013.02.4.01.22"
+            android:textSize="12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_phone"
+            android:text="联系方式138024249542"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true">
+        </TextView>
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_marginTop="160dp"
+        android:id="@+id/lost_image"
+        android:layout_alignParentStart="true"
+        />
+
+
+</RelativeLayout>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+  <view.MyScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollview_main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+   >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/background_dark"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:descendantFocusability="beforeDescendants"
+        android:orientation="vertical">
+        <com.jude.rollviewpager.RollPagerView
+            android:id="@+id/roll_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            >
+        </com.jude.rollviewpager.RollPagerView>
+        <TextSwitcher
+            android:id="@+id/text_switcher"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            >
+        </TextSwitcher>
+      <include layout="@layout/school_timetable"
+          android:layout_width="match_parent"
+          android:layout_height="250dp"
+          />
+        <GridView
+            android:id="@+id/gridview_main"
+            android:layout_width="wrap_content"
+            android:layout_height="230dp"
+            android:layout_marginLeft="22dp"
+            android:layout_gravity="center_horizontal"
+            android:numColumns="3">
+        </GridView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:text="此处是关键遗失信息和实用二手推送区"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:textColor="@android:color/white"/>
+    </LinearLayout>
+</view.MyScrollView>
+
+
+
