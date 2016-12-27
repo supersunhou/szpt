@@ -89,7 +89,7 @@ public class SecondHandleAdapter extends BaseAdapter {
         }
         final ScondHandle p=mlist.get(position);
         final int a=p.getPhotoCount();
-      //  holder.mgallery.removeAllViews();
+        holder.mgallery.removeAllViews();
         switch (a){
             case 1:View mview6 = mInflater.inflate(R.layout.activity_index_gallery, holder.mgallery, false);
                 ImageView img6 = (ImageView) mview6.findViewById(R.id.id_index_gallery_item_image);

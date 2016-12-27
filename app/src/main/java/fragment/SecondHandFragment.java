@@ -112,13 +112,13 @@ public class SecondHandFragment extends BaseFragment implements ReFlashListView.
 
     @Override
     public void onReflash() {
-        if(queryAll!=null){
-            queryAll=null;
-            count=0;
-        }if(mlist!=null){
-            mlist.clear();
-            adapter.notifyDataSetChanged();
-        }
+//        if(queryAll!=null){
+//            queryAll=null;
+//            count=0;
+//        }if(mlist!=null){
+//            mlist.clear();
+//            adapter.notifyDataSetChanged();
+//        }
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
 
@@ -126,6 +126,7 @@ public class SecondHandFragment extends BaseFragment implements ReFlashListView.
             public void run() {
                 queryAll = new BmobQuery<ScondHandle>();
                 queryAll.order("-createdAt");
+                queryAll.setLimit(5);
                 queryAll.findObjects(new FindListener<ScondHandle>() {
                     @Override
                     public void done(List<ScondHandle> list, BmobException e) {
