@@ -119,6 +119,7 @@ public class SecondHandFragment extends BaseFragment implements ReFlashListView.
 //            mlist.clear();
 //            adapter.notifyDataSetChanged();
 //        }
+        count=0;
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
 
