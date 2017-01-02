@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import base.BaseActivity;
+import bean.Course;
+import bean.SchoolTimeTable;
 import cn.bmob.v3.Bmob;
 import fragment.AnswerFragemnt;
 import fragment.LostFragment;
@@ -44,10 +46,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
     // 手指是否在滑动
     private boolean isBackScrolling = false; //
     // 手指离开后的回弹
-    private long startTime = 0;
-    private long currentTime = 0;
+//    private long startTime = 0;
+//    private long currentTime = 0;
     private FragmentPagerAdapter mAdapter;
-    private int moveOne = 0; // 下划线移动一个选项卡
+//    private int moveOne = 0; // 下划线移动一个选项卡
     //fragments
     private AnswerFragemnt answerFragemnt;
     private LostFragment lostFragment;
@@ -59,6 +61,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
 //    private int currentTabIndex;//判断当前的Framgent
 //    private Button[] mTabs;
 //    private Fragment[] fragments;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,7 +120,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
               mDrawerLayout.openDrawer(Gravity.LEFT);
             }
         });
-
 
     }
     private void initDatas() {

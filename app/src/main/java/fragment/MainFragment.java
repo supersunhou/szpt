@@ -1,5 +1,9 @@
 package fragment;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -15,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
@@ -34,7 +39,9 @@ import java.util.List;
 import java.util.Map;
 
 import base.BaseFragment;
+import bean.Course;
 import bean.LostandFoundInfo;
+import bean.SchoolTimeTable;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
@@ -62,6 +69,14 @@ public class MainFragment extends BaseFragment {
     private List<Map<String, Object>> data_list;
     private SimpleAdapter sim_adapter;
    private View view;
+    //课表信息
+    private SchoolTimeTable mSchoolTimeTable;
+    private TextView txv_day_one,txv_day_two,txv_day_three,txv_day_four,txv_day_five,
+            txv_day_six,txv_day_sunday,txv_course_name,txv_course_time,txv_course_place,
+            txv_course_next,txv_now_week,txv_last_course;
+    private List<Course> courses;
+    private LinearLayout course_infromation;
+    private int currentCourseNum=0;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -82,6 +97,85 @@ public class MainFragment extends BaseFragment {
         //置顶
         mScrollView.fullScroll(ScrollView.FOCUS_UP);
         // mRollViewPager.setHintView(new IconHintView(this, R.drawable.point_focus, R.drawable.point_normal));
+      // 课表
+        course_infromation= (LinearLayout) view.findViewById(R.id.course_infromation);
+        txv_course_name= (TextView)view.findViewById(R.id.txv_course_name);
+        txv_course_time= (TextView)view.findViewById(R.id.txv_course_time);
+        txv_course_place= (TextView)view.findViewById(R.id.txv_course_place);
+        txv_course_next= (TextView)view.findViewById(R.id.txv_next_course);
+        txv_last_course= (TextView) view.findViewById(R.id.txv_last_course);
+        txv_now_week= (TextView)view.findViewById(R.id.txv_now_week);
+        txv_day_one= (TextView)view.findViewById(R.id.txv_day_one);
+        txv_day_two= (TextView)view.findViewById(R.id.txv_day_two);
+        txv_day_three= (TextView)view.findViewById(R.id.txv_day_three);
+        txv_day_four= (TextView)view.findViewById(R.id.txv_day_four);
+        txv_day_five= (TextView)view.findViewById(R.id.txv_day_five);
+        txv_day_six= (TextView)view.findViewById(R.id.txv_day_six);
+        txv_day_sunday= (TextView)view.findViewById(R.id.txv_day_sunday);
+        getmSchoolTimeTableDatas();
+        txv_now_week.setText(mSchoolTimeTable.getNowWeek());
+        final PropertyValuesHolder pvh1=PropertyValuesHolder.ofFloat("scaleX",1f,0);
+        final PropertyValuesHolder pvh2=PropertyValuesHolder.ofFloat("scaleY",1f,0);
+        final PropertyValuesHolder pvh3=PropertyValuesHolder.ofFloat("scaleX",0,1f);
+        final PropertyValuesHolder pvh4=PropertyValuesHolder.ofFloat("scaleY",0,1f);
+        txv_course_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (currentCourseNum>=mSchoolTimeTable.getCourses().size()-1){
+                    Toast.makeText(getActivity(),"当前为最后的课",Toast.LENGTH_SHORT).show();
+                    return ;
+                }else {
+                    currentCourseNum++;
+                    ObjectAnimator animOut= ObjectAnimator.ofPropertyValuesHolder(course_infromation,pvh1,pvh2).setDuration(500);
+                    final ObjectAnimator animIn= ObjectAnimator.ofPropertyValuesHolder(course_infromation,pvh3,pvh4).setDuration(500);
+                    animOut.start();
+                    animOut.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationStart(Animator animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            txv_course_name.setText(mSchoolTimeTable.getCourses().get(currentCourseNum).getCoueseName());
+                            txv_course_time.setText(mSchoolTimeTable.getCourses().get(currentCourseNum).getCourseTime());
+                            txv_course_place.setText(mSchoolTimeTable.getCourses().get(currentCourseNum).getCoursePlace());
+                            animIn.start();
+                        }
+                    });
+                }
+
+            }
+        });
+        txv_last_course.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (currentCourseNum!=mSchoolTimeTable.getCourses().size()-1&&currentCourseNum==0){
+                    Toast.makeText(getActivity(),"当前为第一节课",Toast.LENGTH_SHORT).show();
+                    return ;
+                }else {
+                    currentCourseNum--;
+                    ObjectAnimator animOut= ObjectAnimator.ofPropertyValuesHolder(course_infromation,pvh1,pvh2).setDuration(500);
+                    final ObjectAnimator animIn= ObjectAnimator.ofPropertyValuesHolder(course_infromation,pvh3,pvh4).setDuration(500);
+                    animOut.start();
+                    animOut.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationStart(Animator animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            txv_course_name.setText(mSchoolTimeTable.getCourses().get(currentCourseNum).getCoueseName());
+                            txv_course_time.setText(mSchoolTimeTable.getCourses().get(currentCourseNum).getCourseTime());
+                            txv_course_place.setText(mSchoolTimeTable.getCourses().get(currentCourseNum).getCoursePlace());
+                            animIn.start();
+                        }
+                    });
+                }
+
+            }
+        });
         return view;
     }
 
@@ -234,5 +328,16 @@ public class MainFragment extends BaseFragment {
                 }
             }
         });
+    }
+
+
+    public void  getmSchoolTimeTableDatas(){
+        courses=new ArrayList<Course>();
+        Course course1=new Course("Macios应用开发","3,4节8.30上课","西丽湖校区,信息楼408");
+        Course course2=new Course("C#应用开发","5,6节2.00上课","西丽湖校区,信息楼508");
+        courses.add(course1);
+        courses.add(course2);
+        mSchoolTimeTable=new SchoolTimeTable("第十九周","三",courses);
+
     }
 }
