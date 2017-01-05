@@ -43,7 +43,7 @@ public class SecondHandFragment extends BaseFragment implements ReFlashListView.
     private Button btn_send;
     private ImageView img_sunmit;
     private int count = 0;
-    ProgressDialog p;
+   // ProgressDialog p;
     private android.os.Handler handler = new android.os.Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -57,17 +57,17 @@ public class SecondHandFragment extends BaseFragment implements ReFlashListView.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.second_hand_fragment_layout, container, false);
-        Bmob.initialize(getActivity(), "094aaa7dc57ca4bd04781a4ceb7af1c0");
+       // Bmob.initialize(getActivity(), "094aaa7dc57ca4bd04781a4ceb7af1c0");
         initView(view);
         initData();
         return view;
     }
 
     private void initView(View view) {
-        p = new ProgressDialog(getActivity());
-        p.setMessage("正在加载数据...");
-        p.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        p.show();
+//        p = new ProgressDialog(getActivity());
+//        p.setMessage("正在加载数据...");
+//        p.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+//        p.show();
         lv_list = (ReFlashListView) view.findViewById(R.id.lv_list);
         lv_list.setInterface(this);
         btn_send = (Button) view.findViewById(R.id.btn_send);
@@ -85,9 +85,9 @@ public class SecondHandFragment extends BaseFragment implements ReFlashListView.
                     mlist = list;
                     adapter = new SecondHandleAdapter(getActivity(), mlist);
                     lv_list.setAdapter(adapter);
-                    p.dismiss();
+                   // p.dismiss();
                 } else {
-                    p.dismiss();
+                    //p.dismiss();
                     Toast.makeText(getActivity(), "查询不到数据", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -136,9 +136,9 @@ public class SecondHandFragment extends BaseFragment implements ReFlashListView.
                             adapter = new SecondHandleAdapter(getActivity(), mlist);
                             lv_list.setAdapter(adapter);
                             lv_list.reflashComplete();
-                            p.dismiss();
+                          //  p.dismiss();
                         } else {
-                            p.dismiss();
+                          //  p.dismiss();
                             Toast.makeText(getActivity(), "查询不到数据", Toast.LENGTH_SHORT).show();
                         }
                     }

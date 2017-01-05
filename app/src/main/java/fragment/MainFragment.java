@@ -51,7 +51,7 @@ import view.MyScrollView;
  * Created by hasee on 2016/11/26.
  */
 
-public class MainFragment extends BaseFragment {
+public class MainFragment extends BaseFragment implements View.OnClickListener {
     public static final String TITLE = "title";
     private RollPagerView mRollViewPager;
     private MyScrollView mScrollView;
@@ -70,13 +70,16 @@ public class MainFragment extends BaseFragment {
     private SimpleAdapter sim_adapter;
    private View view;
     //课表信息
-    private SchoolTimeTable mSchoolTimeTable;
     private TextView txv_day_one,txv_day_two,txv_day_three,txv_day_four,txv_day_five,
             txv_day_six,txv_day_sunday,txv_course_name,txv_course_time,txv_course_place,
             txv_course_next,txv_now_week,txv_last_course;
-    private List<Course> courses;
+
+    private List<SchoolTimeTable> schoolTimeTables;
     private LinearLayout course_infromation;
     private int currentCourseNum=0;
+    private  int currentDay=0;
+    public ObjectAnimator animIn;
+    public ObjectAnimator animOut;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -112,22 +115,30 @@ public class MainFragment extends BaseFragment {
         txv_day_five= (TextView)view.findViewById(R.id.txv_day_five);
         txv_day_six= (TextView)view.findViewById(R.id.txv_day_six);
         txv_day_sunday= (TextView)view.findViewById(R.id.txv_day_sunday);
+        txv_day_one.setOnClickListener(this);
+        txv_day_two.setOnClickListener(this);
+        txv_day_three.setOnClickListener(this);
+        txv_day_four.setOnClickListener(this);
+        txv_day_five.setOnClickListener(this);
+        txv_day_six.setOnClickListener(this);
+        txv_day_sunday.setOnClickListener(this);
         getmSchoolTimeTableDatas();
-        txv_now_week.setText(mSchoolTimeTable.getNowWeek());
+        txv_now_week.setText(schoolTimeTables.get(currentDay).getNowWeek());
         final PropertyValuesHolder pvh1=PropertyValuesHolder.ofFloat("scaleX",1f,0);
         final PropertyValuesHolder pvh2=PropertyValuesHolder.ofFloat("scaleY",1f,0);
         final PropertyValuesHolder pvh3=PropertyValuesHolder.ofFloat("scaleX",0,1f);
         final PropertyValuesHolder pvh4=PropertyValuesHolder.ofFloat("scaleY",0,1f);
+         animOut= ObjectAnimator.ofPropertyValuesHolder(course_infromation,pvh1,pvh2).setDuration(500);
+         animIn= ObjectAnimator.ofPropertyValuesHolder(course_infromation,pvh3,pvh4).setDuration(500);
         txv_course_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (currentCourseNum>=mSchoolTimeTable.getCourses().size()-1){
+                if (currentCourseNum>=schoolTimeTables.get(currentDay).getCourses().size()-1){
                     Toast.makeText(getActivity(),"当前为最后的课",Toast.LENGTH_SHORT).show();
                     return ;
                 }else {
                     currentCourseNum++;
-                    ObjectAnimator animOut= ObjectAnimator.ofPropertyValuesHolder(course_infromation,pvh1,pvh2).setDuration(500);
-                    final ObjectAnimator animIn= ObjectAnimator.ofPropertyValuesHolder(course_infromation,pvh3,pvh4).setDuration(500);
+
                     animOut.start();
                     animOut.addListener(new AnimatorListenerAdapter() {
                         @Override
@@ -137,9 +148,9 @@ public class MainFragment extends BaseFragment {
 
                         @Override
                         public void onAnimationEnd(Animator animation) {
-                            txv_course_name.setText(mSchoolTimeTable.getCourses().get(currentCourseNum).getCoueseName());
-                            txv_course_time.setText(mSchoolTimeTable.getCourses().get(currentCourseNum).getCourseTime());
-                            txv_course_place.setText(mSchoolTimeTable.getCourses().get(currentCourseNum).getCoursePlace());
+                            txv_course_name.setText(schoolTimeTables.get(currentDay).getCourses().get(currentCourseNum).getCoueseName());
+                            txv_course_time.setText(schoolTimeTables.get(currentDay).getCourses().get(currentCourseNum).getCourseTime());
+                            txv_course_place.setText(schoolTimeTables.get(currentDay).getCourses().get(currentCourseNum).getCoursePlace());
                             animIn.start();
                         }
                     });
@@ -150,13 +161,13 @@ public class MainFragment extends BaseFragment {
         txv_last_course.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (currentCourseNum!=mSchoolTimeTable.getCourses().size()-1&&currentCourseNum==0){
+                if (currentCourseNum!=schoolTimeTables.get(currentDay).getCourses().size()-1&&currentCourseNum==0){
                     Toast.makeText(getActivity(),"当前为第一节课",Toast.LENGTH_SHORT).show();
                     return ;
                 }else {
                     currentCourseNum--;
-                    ObjectAnimator animOut= ObjectAnimator.ofPropertyValuesHolder(course_infromation,pvh1,pvh2).setDuration(500);
-                    final ObjectAnimator animIn= ObjectAnimator.ofPropertyValuesHolder(course_infromation,pvh3,pvh4).setDuration(500);
+//                    ObjectAnimator animOut= ObjectAnimator.ofPropertyValuesHolder(course_infromation,pvh1,pvh2).setDuration(500);
+//                    final ObjectAnimator animIn= ObjectAnimator.ofPropertyValuesHolder(course_infromation,pvh3,pvh4).setDuration(500);
                     animOut.start();
                     animOut.addListener(new AnimatorListenerAdapter() {
                         @Override
@@ -166,9 +177,9 @@ public class MainFragment extends BaseFragment {
 
                         @Override
                         public void onAnimationEnd(Animator animation) {
-                            txv_course_name.setText(mSchoolTimeTable.getCourses().get(currentCourseNum).getCoueseName());
-                            txv_course_time.setText(mSchoolTimeTable.getCourses().get(currentCourseNum).getCourseTime());
-                            txv_course_place.setText(mSchoolTimeTable.getCourses().get(currentCourseNum).getCoursePlace());
+                            txv_course_name.setText(schoolTimeTables.get(currentDay).getCourses().get(currentCourseNum).getCoueseName());
+                            txv_course_time.setText(schoolTimeTables.get(currentDay).getCourses().get(currentCourseNum).getCourseTime());
+                            txv_course_place.setText(schoolTimeTables.get(currentDay).getCourses().get(currentCourseNum).getCoursePlace());
                             animIn.start();
                         }
                     });
@@ -263,6 +274,51 @@ public class MainFragment extends BaseFragment {
             }
         }
     };
+
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()){
+            case R.id.txv_day_one:
+                currentDay=0;
+                currentCourseNum=0;
+                setCoueseFromDay(currentDay);
+             //  Toast.makeText(getActivity(),currentDay+"",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.txv_day_two:
+                currentDay=1;
+                currentCourseNum=0;
+                setCoueseFromDay(currentDay);
+            //   Toast.makeText(getActivity(),currentDay+"",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.txv_day_three:
+                currentDay=2;
+                currentCourseNum=0;
+                setCoueseFromDay(currentDay);
+             //   Toast.makeText(getActivity(),currentDay+"",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.txv_day_four:
+                currentDay=3;
+                currentCourseNum=0;
+                setCoueseFromDay(currentDay);
+                break;
+            case R.id.txv_day_five:
+                currentDay=4;
+                currentCourseNum=0;
+                setCoueseFromDay(currentDay);
+                break;
+            case R.id.txv_day_six:
+                currentDay=5;
+                currentCourseNum=0;
+                setCoueseFromDay(currentDay);
+                break;
+            case R.id.txv_day_sunday:
+//                currentDay=6;
+//                setCoueseFromDay(currentDay);
+                break;
+        }
+    }
+
     private class TestLoopAdapter extends LoopPagerAdapter {
         private int[] imgs = {R.drawable.rollview1, R.drawable.rollview2, R.drawable.rollview3,
                 R.drawable.rollview4};  // 本地图片
@@ -332,12 +388,49 @@ public class MainFragment extends BaseFragment {
 
 
     public void  getmSchoolTimeTableDatas(){
-        courses=new ArrayList<Course>();
+        List<Course> courses1=new ArrayList<Course>();
+        List<Course> courses2=new ArrayList<Course>();
+        schoolTimeTables=new ArrayList<SchoolTimeTable>();
         Course course1=new Course("Macios应用开发","3,4节8.30上课","西丽湖校区,信息楼408");
         Course course2=new Course("C#应用开发","5,6节2.00上课","西丽湖校区,信息楼508");
-        courses.add(course1);
-        courses.add(course2);
-        mSchoolTimeTable=new SchoolTimeTable("第十九周","三",courses);
+        Course course3=new Course("软件测试","7,7+节15.45上课","西丽湖校区,信息楼408");
+        courses1.add(course1);
+        courses1.add(course2);
+       SchoolTimeTable mSchoolTimeTable1=new SchoolTimeTable("第十九周","三",courses1);
+        courses2.add(course2);
+        courses2.add(course3);
+        SchoolTimeTable mSchoolTimeTable2=new SchoolTimeTable("第十九周","三",courses2);
+        schoolTimeTables.add(mSchoolTimeTable1);
+        schoolTimeTables.add(mSchoolTimeTable2);
+        schoolTimeTables.add(mSchoolTimeTable1);
+        schoolTimeTables.add(mSchoolTimeTable2);
+        schoolTimeTables.add(mSchoolTimeTable1);
+        schoolTimeTables.add(mSchoolTimeTable2);
+    }
 
+    public void setCoueseFromDay(final int currentDay){
+        if (schoolTimeTables.get(currentDay).getCourses().size()-1==0){
+            Toast.makeText(getActivity(),"今天没课",Toast.LENGTH_SHORT).show();
+            return ;
+        }else {
+            // currentCourseNum--;
+//                    ObjectAnimator animOut= ObjectAnimator.ofPropertyValuesHolder(course_infromation,pvh1,pvh2).setDuration(500);
+//                    final ObjectAnimator animIn= ObjectAnimator.ofPropertyValuesHolder(course_infromation,pvh3,pvh4).setDuration(500);
+            animOut.start();
+            animOut.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationStart(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    txv_course_name.setText(schoolTimeTables.get(currentDay).getCourses().get(0).getCoueseName());
+                    txv_course_time.setText(schoolTimeTables.get(currentDay).getCourses().get(0).getCourseTime());
+                    txv_course_place.setText(schoolTimeTables.get(currentDay).getCourses().get(0).getCoursePlace());
+                    animIn.start();
+                }
+            });
+        }
     }
 }

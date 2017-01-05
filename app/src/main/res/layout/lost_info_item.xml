@@ -87,6 +87,7 @@
         android:layout_marginTop="160dp"
         android:id="@+id/lost_image"
         android:layout_alignParentStart="true"
+        android:transitionName="lostImg"
         />
 
 

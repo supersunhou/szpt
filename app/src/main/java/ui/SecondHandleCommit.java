@@ -81,7 +81,7 @@ public class SecondHandleCommit extends Activity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_secondhandlecommit);
-        Bmob.initialize(this,"094aaa7dc57ca4bd04781a4ceb7af1c0");
+       // Bmob.initialize(this,"094aaa7dc57ca4bd04781a4ceb7af1c0");
         initViews();
         initGridView();
         initDatas();
