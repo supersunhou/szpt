@@ -80,7 +80,7 @@ private Spinner mSpinner;
         ArrayAdapter arr2=ArrayAdapter.createFromResource(this,R.array.campus, android.R.layout.simple_spinner_item);
         arr.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spn_campus.setAdapter(arr2);
-        //
+        
         mImageView= (ImageView) findViewById(R.id.add_things_image);
         edt_things_name= (EditText) findViewById(R.id.edt_things_name);
         edt_things_information= (EditText) findViewById(R.id.edt_things_information);
