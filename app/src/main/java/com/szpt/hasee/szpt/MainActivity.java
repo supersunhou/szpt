@@ -50,7 +50,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,V
 //    private long currentTime = 0;
     private FragmentPagerAdapter mAdapter;
 //    private int moveOne = 0; // 下划线移动一个选项卡
-    //fragments
+    //fragmen
     private AnswerFragemnt answerFragemnt;
     private LostFragment lostFragment;
     private MainFragment mainFragment;
